@@ -111,11 +111,27 @@ class ElectroNetwork {
 }//class ElectroNetwork
 
 //-------------------------------------------------------------------------------------------------------------------------
-
+/*
 //let powerProducers = [new PowerStations(95), new PowerStations(19), new SunPannels(6), new SunPannels(5), new SunPannels(2), new SunPannels(3)];
 let powerProducers = [new SunPannels(2), new SunPannels(3)];
 let powerConsumers = [new Houses(211), new Houses(401), new Houses(19), new Houses(1000)];
 let powerLines = [new PowerLines(20, 10), new PowerLines(10, 5), new PowerLines(23, 11)];
+*/
+
+//generating network
+const getRandomInt = (min, max) => {
+    return Math.floor(Math.random() * (max - min)) + min;
+};
+
+let powerProducers = [];
+for (let i = 0; i < getRandomInt(1, 7); i++) { powerProducers.push(new PowerStations(getRandomInt(1, 101))); }
+for (let i = 0; i < getRandomInt(1, 30); i++) { powerProducers.push(new SunPannels(getRandomInt(1, 6))); }
+
+let powerConsumers = [];
+for (let i = 0; i < getRandomInt(1, 100); i++) { powerConsumers.push(new Houses(getRandomInt(1, 401))); }
+
+let powerLines = [];
+for (let i = 0; i < getRandomInt(1, 50); i++) { powerLines.push(new PowerLines(getRandomInt(5, 20), getRandomInt(10, 20))); }
 
 let electroNetwork = new ElectroNetwork(powerProducers, powerConsumers, powerLines);
 electroNetwork.printNetworkObjects();
